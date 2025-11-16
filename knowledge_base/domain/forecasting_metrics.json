@@ -1,0 +1,26 @@
+[
+  {
+    "metric_name": "MAE (Mean Absolute Error)",
+    "explanation": "Measures the average magnitude of the errors in a set of forecasts, without considering their direction. It's the average absolute difference between the forecast and actual values.",
+    "interpretation_guidelines": "Lower is better. Units are the same as the original data (e.g., if forecasting units sold, MAE is in units sold). Useful for understanding typical error magnitude.",
+    "business_impact": "Directly relates to the average quantity miss in planning (e.g., inventory units)."
+  },
+  {
+    "metric_name": "RMSE (Root Mean Square Error)",
+    "explanation": "The square root of the average of squared differences between forecast and actual values. It penalizes large errors more heavily than MAE.",
+    "interpretation_guidelines": "Lower is better. Units are the same as the original data. More sensitive to outliers than MAE.",
+    "business_impact": "Highlights the impact of occasional large forecast misses."
+  },
+  {
+    "metric_name": "MAPE (Mean Absolute Percentage Error)",
+    "explanation": "The average absolute percent difference between forecast and actual values. Expresses error as a percentage of actual values.",
+    "interpretation_guidelines": "Lower is better. Unit-free, making it useful for comparing accuracy across items with different scales. Can be misleading or undefined if actual values are zero or near zero.",
+    "business_impact": "Provides a relative sense of forecast error (e.g., 'forecast is off by 10% on average')."
+  },
+  {
+    "metric_name": "Bias",
+    "explanation": "Measures the average forecast error (forecast - actual). Indicates if the model consistently over-forecasts (positive bias) or under-forecasts (negative bias).",
+    "interpretation_guidelines": "Closer to zero is better. Consistent positive or negative bias indicates a systematic issue with the model.",
+    "business_impact": "Consistent under-forecasting leads to stockouts; consistent over-forecasting leads to excess inventory."
+  }
+]

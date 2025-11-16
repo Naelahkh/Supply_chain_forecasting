@@ -1,0 +1,23 @@
+{
+    "features": {
+        "Customer": "category",
+        "Location": "category",
+        "BusinessType": "category",
+        "OrderCount": "int64",
+        "NumberOfPieces": "int64",
+        "year": "int32",
+        "month": "int32",
+        "day": "int32",
+        "dayofweek": "int32",
+        "weekofyear": "int64",
+        "TotalRevenue_lag_1": "float64",
+        "TotalRevenue_lag_7": "float64",
+        "TotalRevenue_lag_14": "float64",
+        "TotalRevenue_rolling_mean_7": "float64",
+        "TotalRevenue_rolling_mean_14": "float64"
+    },
+    "target": {
+        "name": "TotalRevenue",
+        "dtype": "float64"
+    }
+}

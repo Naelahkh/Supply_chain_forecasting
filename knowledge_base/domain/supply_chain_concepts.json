@@ -1,0 +1,38 @@
+[
+  {
+    "concept_name": "Lead Time",
+    "definition": "The time elapsed between placing an order and receiving it.",
+    "implications_for_forecasting": "Longer lead times increase the forecast horizon needed and the potential for forecast error impact. Forecast accuracy is critical.",
+    "common_mitigations": "Negotiating shorter lead times, improving supplier reliability, holding safety stock."
+  },
+  {
+    "concept_name": "Safety Stock",
+    "definition": "Extra inventory held to mitigate risk of stockouts caused by uncertainties in supply and demand.",
+    "implications_for_forecasting": "The amount of safety stock needed is directly influenced by forecast accuracy and demand variability. Higher forecast errors often necessitate higher safety stock.",
+    "common_mitigations": "Improving forecast accuracy, reducing lead time variability, using statistical safety stock calculations."
+  },
+  {
+    "concept_name": "Seasonality",
+    "definition": "Predictable patterns in demand that repeat over a specific time period (e.g., daily, weekly, monthly, yearly).",
+    "implications_for_forecasting": "Models must be able to capture and project these repeating cycles. Identifying the correct seasonal period(s) is crucial.",
+    "common_mitigations": "Using seasonal forecasting models (like Prophet, SARIMA), adjusting inventory levels proactively."
+  },
+  {
+    "concept_name": "Trend",
+    "definition": "The long-term upward or downward direction of demand, ignoring short-term fluctuations.",
+    "implications_for_forecasting": "Models need to identify and extrapolate the underlying trend. Trend changes (changepoints) can be challenging.",
+    "common_mitigations": "Using models capable of trend fitting (like Prophet, Holt-Winters), monitoring for trend shifts."
+  },
+  {
+    "concept_name": "Promotion Impact",
+    "definition": "The effect of marketing promotions (discounts, advertising) on product demand, often causing temporary spikes.",
+    "implications_for_forecasting": "These events create deviations from normal patterns. Models need external information (regressors) about promotions to forecast them accurately.",
+    "common_mitigations": "Including promotion flags/calendars as features in ML models (like XGBoost), adjusting baseline forecasts based on historical promotion lift."
+  },
+  {
+    "concept_name": "Stockout",
+    "definition": "A situation where demand for an item cannot be fulfilled from current inventory.",
+    "implications_for_forecasting": "Historical stockout periods can appear as zero demand, misleading models if not handled correctly (censored data). Future forecasts should aim to minimize stockout risk.",
+    "common_mitigations": "Holding safety stock, improving forecast accuracy, expediting shipments."
+  }
+]

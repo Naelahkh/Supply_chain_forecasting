@@ -1,0 +1,90 @@
+uvicorn unified_forecaster_app:app --reload
+streamlit run web_app_v2.py
+
+My data needs to be summarized monthly. I require an accurate forecast for the next 12 months that accounts for lags and rolling averages. What is the most robust model for this task?
+
+
+It's time for the final, definitive test for your LSTM model! Since the code base has received extensive updates to handle the complex feature requirements of the LSTM (multivariate features, scaling, and sequence reshaping), this test will validate the entire pipeline.
+
+The query must instruct the RAG agent to choose the LSTM model and specify daily granularity and short-term forecasting.
+
+💬 Query to Select the LSTM Model
+Ask a question that focuses on daily granularity and requests a deep learning model, as your LSTM is the only option that meets those criteria.
+
+Suggested Prompt for Streamlit:
+"I need a highly accurate, granular prediction for daily revenue for the next 7 days. Which deep learning model should I use for this very short-term forecast?"
+
+
+LIGHTGBM MONTHLY:
+My data is aggregated monthly. Can you run a 6-month prediction using the fastest and most robust monthly model?
+
+XGBOOST MONTHLY (Multi-Location):
+My data needs to be summarized monthly. I require an accurate forecast for the next 12 months that accounts for lags and rolling averages. I have multiple locations, customers, and business types. What is the most robust model for this task?
+
+If you just ask, "Run a forecast," without specifying a time, the agent will use the default (52 weeks).
+
+-----------------------------
+
+Chat logic improved to better distinguish between asking about forecasts (using keywords like "what," "how," "explain," "strengths," etc.) and asking to run a forecast (using keywords like "run," "generate," "predict," "perform").
+
+
+💬 Query to Select Prophet
+Input this prompt into your Streamlit chat interface:
+
+"I need a strategic forecast for the next 6 months to plan inventory. Use a weekly aggregation and a simple, highly interpretable model
+
+---------------------------------
+💬 Query Set for LightGBM Monthly (lightgbm_monthly_v1)
+Query 1: Emphasizing Efficiency and Speed
+This query focuses on operational efficiency and resource management, which are core selling points of LightGBM.
+
+"I need a standard monthly sales forecast for the next 4 months. Please use the model that is fastest and most resource-efficient for generalized regression."
+
+RAG Keywords: monthly, fastest, resource-efficient, generalized regression.
+
+Expected RAG Output: {"model_id": "lightgbm_monthly_v1", "horizon_steps": 4, "frequency": "M"}
+
+Query 2: Focusing on Volatility and Stability
+This query focuses on handling typical data noise (which LightGBM is robust to) over extreme complexity (XGBoost).
+
+"Which model is best for monthly forecasting that is both highly stable and can handle general sales volatility over 12 periods?"
+
+RAG Keywords: monthly forecasting, stable, general sales volatility, 12 periods.
+
+Expected RAG Output: {"model_id": "lightgbm_monthly_v1", "horizon_steps": 12, "frequency": "M"}.
+
+-----------------------------
+
+Use one of these queries to test if the RAG selects the SARIMA model:
+Query 1 (daily data with weekly seasonality)
+"Forecast daily revenue for the next 30 days. I have daily data with weekly seasonal patterns."
+Query 2 (explicit SARIMA mention)
+"Run a forecast for daily sales data with weekly seasonality using a statistical time series model."
+Query 3 (univariate time series)
+"I need to forecast daily TotalRevenue for the next 2 weeks. The data shows strong weekly patterns."
+Query 4 (seasonal patterns)
+"Generate a forecast for daily data with weekly seasonal components. Use a statistical forecasting model."
+Query 5 (simple and direct)
+"Forecast daily revenue for next 14 days. Data has weekly seasonality."
+
+------------------------------------
+
+ecommended test queries for LightGBM
+Query 1: Daily data with categorical features
+"Forecast daily TotalRevenue for the next 30 days. I have Customer, Location, and BusinessType columns in my data."
+Query 2: Explicit mention of daily lags
+"Predict TotalRevenue for next 2 weeks using daily data with lag features and rolling statistics."
+Query 3: Daily forecast with multiple features
+"Run a forecast for daily revenue. My data has Customer, Location, BusinessType, OrderCount, and NumberOfPieces columns."
+Query 4: Daily granularity with categoricals
+"Forecast daily TotalRevenue for the next 14 days. The data includes Customer and Location information."
+Query 5: Simple daily forecast
+"Predict daily revenue for next 30 days."
+Query 6: Daily with temporal features
+"Generate a daily forecast for TotalRevenue for the next 21 days. I have daily data with Customer and Location columns."
+Query 7: Explicit LightGBM mention
+"Use LightGBM to forecast daily TotalRevenue for next 2
+
+-------------------------------
+
+

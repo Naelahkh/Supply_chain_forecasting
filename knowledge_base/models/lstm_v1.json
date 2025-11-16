@@ -1,0 +1,59 @@
+{
+  "model_identity": {
+    "model_id": "lstm_v1",
+    "name": "LSTM Daily TotalRevenue Forecaster",
+    "model_type": "LSTM_Single_Output",
+    "framework": "tensorflow_keras",
+    "version": "1.0"
+  },
+  
+  "required_features": [
+    "WorkDate",
+    "Customer",
+    "Location",
+    "BusinessType",
+    "OrderCount",
+    "year",
+    "month",
+    "day",
+    "dayofweek",
+    "quarter"
+  ],
+  
+  "lags_steps": [], 
+  "sequence_length": 1,
+  
+  "features": {
+    "input_features": {
+      "categorical": [
+        "Customer",
+        "Location",
+        "BusinessType"
+      ],
+      "numerical": [
+        "OrderCount",
+        "year",
+        "month",
+        "day",
+        "dayofweek",
+        "quarter"
+      ]
+    },
+    "preprocessing": {
+      "target_transformation": "log_transform",
+      "target_inverse_transform": "np.exp(predictions)"
+    }
+  },
+  "technical_specifications": {
+    "input_requirements": {
+      "data_format": "pandas_dataframe_or_csv"
+    }
+  },
+  "usage_notes": {
+    "target_column": "TotalRevenue",
+    "output_format": "Single array: TotalRevenue predictions",
+    "important_notes": [
+      "Model uses log-transformed target (predictions need np.exp())"
+    ]
+  }
+}

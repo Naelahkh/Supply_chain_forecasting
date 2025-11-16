@@ -1,0 +1,90 @@
+{
+    "dataset_overview": {
+        "total_rows_raw": 126255,
+        "columns": [
+            "WorkDate",
+            "Customer",
+            "Location",
+            "BusinessType",
+            "OrderCount",
+            "NumberOfPieces",
+            "TotalRevenue"
+        ],
+        "date_range": {
+            "start": "2020-01-02",
+            "end": "2025-06-30"
+        },
+        "unique_customers": 12,
+        "unique_locations": 17,
+        "unique_business_types": 3
+    },
+    "raw_ordercount_stats": {
+        "count": 126255.0,
+        "mean": 27.487758900637598,
+        "std": 23.39094151260188,
+        "min": 1.0,
+        "25%": 11.0,
+        "50%": 20.0,
+        "75%": 37.0,
+        "max": 149.0,
+        "median": 20.0
+    },
+    "top_categories": {
+        "top_customers": {
+            "Amazon": 23250,
+            "Costco": 18998,
+            "Target": 15318,
+            "Home Depot": 14770,
+            "Starbucks": 13481
+        },
+        "top_locations": {
+            "Chicago": 12079,
+            "Milwaukee": 9679,
+            "Los Angeles": 9296,
+            "Sacramento": 9126,
+            "Detroit": 8594
+        },
+        "top_business_types": {
+            "Middle Mile": 54832,
+            "Final Mile": 52425,
+            "First Mile": 18998
+        }
+    },
+    "seasonality_hints": {
+        "avg_demand_by_weekday": {
+            "Monday": 3179.8028169014083,
+            "Tuesday": 3141.4350877192983,
+            "Wednesday": 1558.5492957746478,
+            "Thursday": 1557.053380782918,
+            "Friday": 1568.0315789473684,
+            "Saturday": 605.8556338028169,
+            "Sunday": 609.0915492957746
+        },
+        "avg_demand_by_month": {
+            "1": 2388.3444444444444,
+            "2": 2380.2764705882355,
+            "3": 1585.7096774193549,
+            "4": 1581.9055555555556,
+            "5": 1092.8440860215053,
+            "6": 1100.6888888888889,
+            "7": 1047.6066666666666,
+            "8": 1531.1096774193547,
+            "9": 1525.88,
+            "10": 2269.335483870968,
+            "11": 2308.862068965517,
+            "12": 2299.7533333333336
+        },
+        "notes": [
+            "Strong weekly pattern observed with significant drops on Saturday and Sunday.",
+            "Clear yearly pattern usually visible, potentially peaking late in the year."
+        ]
+    },
+    "overall_patterns": [
+        "Raw data is highly granular (multiple entries per day). Aggregation is needed for daily/weekly forecasting.",
+        "Exhibits strong and clear time-based patterns (weekly, yearly).",
+        "Significantly more predictable than some other demand datasets, especially when aggregated weekly.",
+        "Weekend effect (low/zero sales Sat/Sun) is a dominant feature in daily data.",
+        "Categorical features (Customer, Location, BusinessType) likely influence demand and could be useful for ML models like XGBoost/LightGBM.",
+        "A general long-term trend (potentially upward) is often observed over the 5-year span."
+    ]
+}

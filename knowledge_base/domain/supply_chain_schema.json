@@ -1,0 +1,21 @@
+{
+  "schema_id": "prophet_schema",
+  "name": "Supply Chain Deliveries Schema",
+  "description": "Standard schema for daily supply chain delivery data.",
+  "required_columns_by_purpose": {
+    "time_index": {
+      "expected_type": "datetime",
+      "validation": {"not_null": true},
+      "description": "The primary date or timestamp column."
+    },
+    "target_value": {
+      "expected_type": "integer",
+      "validation": {"not_null": true, "min_value": 0},
+      "description": "The value to be forecasted (e.g., OrderCount)."
+    }
+  },
+  "optional_columns_by_purpose": {
+     "identifier": {"expected_type": "string", "description": "Columns identifying product, customer, location etc."},
+     "exogenous_feature": {"expected_type": "numeric", "description": "Other numeric features that might influence the target."}
+  }
+}

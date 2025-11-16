@@ -1,0 +1,13 @@
+{
+    "target": {
+        "name": "TotalRevenue",
+        "type": "float64"
+    },
+    "features": {
+        "Year": "int32",
+        "Month": "int32",
+        "Day": "int32",
+        "DayOfWeek": "int32",
+        "WeekOfYear": "int64"
+    }
+}

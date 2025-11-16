@@ -1,0 +1,36 @@
+{
+  "model_info": {
+    "model_id": "sarima_daily_v1",
+    "model_type": "SARIMAX (Time Series Statistical)",
+    "forecast_frequency": "DAILY",
+    "description": "Seasonal ARIMA model trained on daily TotalRevenue for specific location/customer, utilizing explicit weekly seasonal (period=7) components."
+  },
+  
+  "required_features": [
+    "TotalRevenue",
+    "Year",
+    "Month",
+    "Day",
+    "DayOfWeek",
+    "WeekOfYear"
+  ],
+  
+  "lags_steps": [],
+  "rolling_windows": [],
+  "sequence_length": 1,
+  
+  "model_parameters": {
+    "order": [1, 1, 1],
+    "seasonal_order": [1, 1, 1, 7]
+  },
+  
+  "usage_notes": {
+    "target_column": "TotalRevenue",
+    "model_granularity": "Specific to Amazon/Atlanta (hardcoded in training)",
+    "training_period": "2020-01-10 to 2025-05-28",
+    "evaluation_metrics": {
+        "MAE": 1687.84,
+        "RMSE": 2842.29
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "model_info": {
+    "model_id": "xgboost_v1",
+    "model_type": "XGBoost Regressor (Multi-Target/Multi-Location)",
+    "forecast_frequency": "MONTHLY",
+    "description": "Model trained to predict NumberOfPieces using multiple exogenous and time series features. SPECIFICALLY DESIGNED for multi-location supply chain forecasting with Customer, Location, and BusinessType dimensions. USES LAG FEATURES (1, 3, 6 months) and ROLLING STATISTICS (3, 6, 12 months). Best choice when user requests: multiple locations, rolling statistics, lag features, or complex multi-dimensional forecasting.",
+    "key_capabilities": [
+      "Handles multiple locations, customers, and business types simultaneously",
+      "Uses lag features (1, 3, 6 months) for historical patterns",
+      "Uses rolling statistics (mean and std for 3, 6, 12 month windows)",
+      "Robust feature engineering for complex supply chain scenarios"
+    ],
+    "when_to_use": [
+      "User mentions 'multiple locations' or 'multi-location'",
+      "User requests 'rolling statistics' or 'rolling averages'",
+      "User asks for 'lag features' or 'historical patterns'",
+      "Data has Customer, Location, and BusinessType columns",
+      "User needs sophisticated monthly forecasting with advanced features"
+    ]
+  },
+  
+  "required_features": [
+    "Customer",
+    "Location",
+    "BusinessType",
+    "TotalRevenue",     
+    "NumberOfPieces",   
+    "month",
+    "quarter",
+    "year",
+    "lag_1",
+    "lag_3",
+    "lag_6",
+    "roll_mean_3",
+    "roll_std_3",
+    "roll_mean_6",
+    "roll_std_6",
+    "roll_mean_12",
+    "roll_std_12"
+  ],
+  
+  "lags_steps": [1, 3, 6],
+  "rolling_windows": [3, 6, 12],
+  "sequence_length": 1,
+  
+  "usage_notes": {
+    "target_column": "NumberOfPieces",
+    "leakage_note": "Includes current-period targets (TotalRevenue, NumberOfPieces) as input features, which must be filled with NaN for prediction."
+  }
+}

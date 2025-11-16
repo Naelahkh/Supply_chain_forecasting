@@ -1,0 +1,11 @@
+Available Forecasting Models:
+
+- Prophet Weekly Forecaster (prophet_weekly_v1): Good for weekly data with strong seasonality. Uses time-series statistical methods.
+
+- XGBoost Monthly Forecaster (xgboost_v1): Excellent for MONTHLY data with multiple locations, customers, and business types. Uses gradient boosting trees with lag features and rolling statistics. Best for multi-location supply chain forecasting with Customer, Location, and BusinessType dimensions. Handles complex feature engineering including lags (1, 3, 6 months) and rolling statistics (3, 6, 12 months). Target variable: NumberOfPieces.
+
+- LightGBM Daily Forecaster (lightgbm_model): Excellent for DAILY data with Customer, Location, and BusinessType columns. Uses gradient boosting trees with advanced feature engineering. Has lag features (1, 7, 14 days) and rolling statistics (7, 14 days). Handles OrderCount and NumberOfPieces as features. Target variable: TotalRevenue. IMPORTANT: Use this for DAILY data with categorical features. For MONTHLY data with categorical features, use xgboost_v1 instead.
+
+- LSTM Multi-Feature Forecaster (lstm_v1): Good for DAILY data WITHOUT categorical features (Customer/Location/BusinessType). Uses deep learning and sequence learning. Best for daily granularity and short-term forecasts when categorical features are not available.
+
+- SARIMA Daily Forecaster (sarima_daily_v1): Good for DAILY univariate time series with weekly seasonality. Uses SARIMAX statistical model. Best when no categorical features are available and you need explicit seasonal components.

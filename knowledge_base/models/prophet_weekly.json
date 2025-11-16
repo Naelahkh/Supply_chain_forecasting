@@ -1,0 +1,21 @@
+{
+  "model_info": {
+    "model_id": "prophet_weekly_v1",
+    "model_type": "Prophet Weekly Forecaster",
+    "forecast_frequency": "WEEKLY",
+    "description": "Strategic forecasting of total order volume over a weekly period."
+  },
+  "required_features": [
+    "WorkDate",
+    "OrderCount"
+  ],
+  "lags_steps": [],
+  "sequence_length": 1,
+  "usage_notes": {
+    "target_column": "OrderCount",
+    "preprocessing_steps": [
+      "1. Requires data to be aggregated to a weekly frequency.",
+      "2. Columns are internally renamed to 'ds' (date) and 'y' (target)."
+    ]
+  }
+}

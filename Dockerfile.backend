@@ -1,0 +1,45 @@
+FROM python:3.10-slim
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    API_PORT=10000
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies in one layer
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    g++ \
+    curl \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
+
+# Copy requirements first (for better caching)
+COPY requirements.txt .
+
+# Install Python build dependencies first
+RUN pip install --upgrade pip setuptools wheel cython && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Copy application code (copy only what's needed)
+COPY . .
+
+# Create necessary directories with proper permissions
+RUN mkdir -p data models knowledge_base logs && \
+    chmod -R 755 /app
+
+# Expose port (Render uses 10000)
+EXPOSE 10000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:${API_PORT:-10000}/health || exit 1
+
+# Use port from environment variable (Render sets PORT env var, we use API_PORT)
+# Default to 10000 for Render compatibility
+CMD ["sh", "-c", "uvicorn unified_forecaster_app:app --host 0.0.0.0 --port ${PORT:-${API_PORT:-10000}} --workers 1"]
+

@@ -1671,4 +1671,6 @@ async def predict_endpoint(req: PredictionRequest):
 # 4. RUNNER
 # --------------------------------------------------------------
 if __name__ == "__main__":
-    uvicorn.run("unified_forecaster_app:app", host="0.0.0.0", port=8000, reload=True)
+    # Use PORT from environment (Render) or API_PORT, default to 8000 for local
+    port = int(os.getenv("PORT", os.getenv("API_PORT", "8000")))
+    uvicorn.run("unified_forecaster_app:app", host="0.0.0.0", port=port, reload=True)

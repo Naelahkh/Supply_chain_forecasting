@@ -11,9 +11,11 @@ ENV PYTHONUNBUFFERED=1 \
 WORKDIR /app
 
 # Install system dependencies in one layer
+# Note: make is needed for cmdstan compilation
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     g++ \
+    make \
     curl \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
@@ -24,6 +26,11 @@ COPY requirements.txt .
 # Install Python build dependencies first
 RUN pip install --upgrade pip setuptools wheel cython && \
     pip install --no-cache-dir -r requirements.txt
+
+# Install cmdstan (required for Prophet model)
+# This can take 5-10 minutes but ensures Prophet works correctly
+# Note: progress=True shows installation progress, verbose=True provides more details
+RUN python -c "import cmdstanpy; import sys; result = cmdstanpy.install_cmdstan(progress=True, verbose=False); print(f'CmdStan installed: {result}'); sys.exit(0 if result else 1)"
 
 # Copy application code (copy only what's needed)
 COPY . .

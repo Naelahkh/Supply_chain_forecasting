@@ -59,3 +59,49 @@ logs/
 # Temporary files
 *.tmp
 *.temp
+
+# Backup files
+*.backup.py
+*.backup.*
+*_backup.*
+*_backup_*
+
+# Model files (large - uncomment if you want to exclude them from git)
+# models/*.pkl
+# models/*.h5
+# models/*.joblib
+
+# Data files (user data - should not be in repo)
+data/chats.json
+data/users.json
+data/*.csv
+data/*.xlsx
+data/*.json
+
+# Docker build artifacts (temporary files)
+[backend
+[frontend
+[internal]
+=
+ERROR
+exporting
+naming
+reading
+resolve
+resolving
+transferring
+unpacking
+CACHED
+
+# Documentation that might be redundant
+DEPLOYMENT_OPTIONS_COMPARISON.md
+DEPLOYMENT_PLAN.md
+DOCKER_DEPLOYMENT_GUIDE.md
+DOCKER_DEPLOYMENT_STEPS.md
+DOCKER_SETUP_SUMMARY.md
+WHY_DOCKER_LOCAL.md
+STOP_AND_REBUILD.md
+BUILD_STATUS_CHECK.md
+INTERPRETATION_COMPARISON.md
+README_DOCKER.md
+DOCKER_QUICK_START.md
